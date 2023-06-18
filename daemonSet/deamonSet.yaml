@@ -1,22 +1,16 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: DeamonSet
 metadata:
-  name: myapp-replicaset
-  labels:
-    app: myapp
-    type: front-end
+  name: monitoring-daemon
 spec:
   template:
     metadata:
     name: myapp-pod
     labels:
-      app: myapp
+      app: monitroing-agent
       type: front-end
     spec:
     containers:
-      - name: nginx-container
-        image: nginx
-  replicas: 3
-  selector:
-    matchLabels:
-      type: front-end
+      - name: monitroing-agent
+        image: monitroing-agent
+
